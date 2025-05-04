@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estaciones</title>
+</head>
+<body>
+    <h1>Filtro</h1>
+    <form>
+        <label for="texto">Texto: </label>
+        <input type="text" placeholder="Escriba el Nombre o direccion " id="texto" name="texto" > <br/>
+        <label for="barrio"> Barrio</label> 
+        <select id="barrio" name="barrio" required> <br/>
+            <option value="" disabled selected >Selecciona una opcion</option>
+            <option value="1">Cerveceros</option>
+            <option value="2">Ituzaingo anexo</option>
+            <option value="2">Poeta Lugones </option>
+        </select> <br/>
+
+        <label for="inactiva">Estaciones Inactivas</label>
+        <input type="checkbox" id="inactiva" name="inactiva"> <br/>
+
+        <button type="submit">Filtrar</button>
+
+    </form>
+
+
+    <h1> Listado de estaciones</h1>
+    <table border="1px" width="90%" >
+        <thead>
+            <tr>
+                <th>Nro</th>
+                <th>Nombre</th>
+                <th>Dirección</th>
+                <th>Barrio</th>
+                <th>Activa</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>123</td>
+                <td>Cerveceros 1</td>
+                <td>Pasaje Cerveza</td>
+                <td>Cerveceros</td>
+                <td>SI</td>
+            </tr>
+            <tr>
+                <td>456</td>
+                <td>Ituzaingo nueva</td>
+                <td>Pasaje Pauli</td>
+                <td>Ituzaingo anexo</td>
+                <td>NO</td>
+            </tr>
+            <tr> 
+                <td>789</td>
+                <td>Miguel septimo</td>
+                <td>Miguel Andres Caminos</td>
+                <td>Poeta Lugones</td>
+                <td>SI</td>
+            </tr>
+        </tbody>
+        
+    </table>
+</body>
+</html>
