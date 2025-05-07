@@ -1,5 +1,5 @@
 /* Esto siempre es igual*/
-
+/* LEVANTA AL SERVIDOR EXPRESS Y SE CONECTA A LA BASE DE DATOS SQLITE */
 import express from "express";
 import sequelize from "./db.js";
 import cors from "cors";
