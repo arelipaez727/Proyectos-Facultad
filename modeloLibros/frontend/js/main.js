@@ -1,3 +1,5 @@
+/*Aca es siempre igual*/
+
 document.addEventListener('DOMContentLoaded', () => {
     //Carga los libros al iniciar la pagina
     cargarLibros();

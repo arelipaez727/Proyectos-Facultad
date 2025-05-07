@@ -1,3 +1,5 @@
+/*Esto siempre es igual*/
+
 import { Sequelize } from "sequelize";
 import { format } from "sql-formatter";
 
@@ -34,3 +36,5 @@ export function disableDbLog() {
 }
 
 export default sequelize;
+
+/*Esto todo es siempre igual, cambiar lo que corresponde */

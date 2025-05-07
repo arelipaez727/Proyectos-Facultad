@@ -1,3 +1,5 @@
+/* Esto siempre es igual*/
+
 import express from "express";
 import sequelize from "./db.js";
 import cors from "cors";
@@ -13,7 +15,10 @@ const port = 3000; // Puerto para el backend
 app.use(cors()); // Habilita CORS
 app.use(express.json()); // Permite a Express leer JSON
 
+/*Hasta aca*/
 
+
+/* Hacer solo si no me dan una base de datos */
 async function seedDatabase() {
     try {
         const count = await Libro.count();
@@ -106,6 +111,11 @@ async function seedDatabase() {
         console.error('Error al insertar datos iniciales:', error);
     }
 }
+/*Hasta aca hacer si no me dan una base de datos*/
+
+
+/*Lo siguiente siempre es igual, cambiar solo lo que corresponde al ejercicio
+SIRVE PARA BUSCAR EN GOOGLE*/
 
 //GET /api/libros: Obtener todos los libros. 
 //GET /api/libros?search=[term]: Obtener libros filtrados únicamente por el término de búsqueda en el Titulo. 
@@ -176,3 +186,6 @@ console.log('Base de datos sincronizada.');
 app.listen(port, () => {
     console.log(`🚀 Servidor corriendo en http://localhost:${port}`);
 });
+
+
+/* Esto siempre es igual*/
