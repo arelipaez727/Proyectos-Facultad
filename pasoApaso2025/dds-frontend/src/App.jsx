@@ -11,7 +11,8 @@ function App() {
   return (
     <>
         <BrowserRouter>
-          <Menu />
+          <Menu/>
+          
           <div className="divBody">
             <Routes>
               <Route path="/inicio" element={<Inicio />} />
@@ -20,6 +21,8 @@ function App() {
                 element={<Categorias />}
               />
               <Route path="*" element={<Navigate to="/inicio" replace />} />
+              <Route path="/articulos" element={<Articulos/>} />
+
             </Routes>
           </div>
           <Footer />

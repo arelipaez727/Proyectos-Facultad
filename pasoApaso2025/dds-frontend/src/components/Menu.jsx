@@ -30,6 +30,11 @@ function Menu() {
               Categorias
             </NavLink>
           </li>
+          <li className="nav-item">	
+            <NavLink className="nav-link" to="/articulos">
+                Articulos
+            </NavLink>
+          </li>
         </ul>
       </div>
     </nav>

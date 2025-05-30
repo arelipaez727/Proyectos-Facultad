@@ -140,7 +140,7 @@ async function Buscar() {
         Articulos <small>{TituloAccionABMC[AccionABMC]}</small>
       </div>
 
-      <ArticulosBuscar
+      { AccionABMC === "L" && <ArticulosBuscar
         Nombre={Nombre}
         setNombre={setNombre}
         Activo={Activo}
@@ -148,9 +148,12 @@ async function Buscar() {
         Buscar={Buscar}
         Agregar={Agregar}
       />
+} 
+
 
       {/* Tabla de resutados de busqueda y Paginador */}
-      <ArticulosListado
+      {AccionABMC === "L" && Items?.length > 0 && 
+ <ArticulosListado
         {...{
           Items,
           Consultar,
@@ -163,16 +166,25 @@ async function Buscar() {
           Buscar,
         }}
       />
+}
 
-      <div className="alert alert-info mensajesAlert">
+
+      {AccionABMC === "L" && Items?.length === 0 && 
+<div className="alert alert-info mensajesAlert">
         <i className="fa fa-exclamation-sign"></i>
         No se encontraron registros...
       </div>
+}
+
 
       {/* Formulario de alta/modificacion/consulta */}
-      <ArticulosRegistro
+      {AccionABMC !== "L" && 
+<ArticulosRegistro
         {...{ AccionABMC, Categorias, Item, Grabar, Volver }}
       />
+}
+
+
     </div>
   );
 }
