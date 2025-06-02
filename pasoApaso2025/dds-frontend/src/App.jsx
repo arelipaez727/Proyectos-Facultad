@@ -6,11 +6,14 @@ import { Footer } from "./components/Footer";
 import { Inicio } from "./components/Inicio";
 import { Categorias } from "./components/Categorias";
 import { Articulos } from "./components/articulos/Articulos";
+import { ModalDialog } from "./components/ModalDialog";
 
 function App() {
   return (
     <>
         <BrowserRouter>
+
+          <ModalDialog />
           <Menu/>
           
           <div className="divBody">
