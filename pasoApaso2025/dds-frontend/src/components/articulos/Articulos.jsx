@@ -3,9 +3,8 @@ import moment from "moment";
 import ArticulosBuscar from "./ArticulosBuscar";
 import ArticulosListado from "./ArticulosListado";
 import ArticulosRegistro from "./ArticulosRegistro";
-import { categoriasMockService as categoriasService } from "../../services/categorias-mock.service";
-import { articulosService } from "../../services/articulos.service";
 //import { categoriasMockService as categoriasService } from "../../services/categorias-mock.service";
+import { articulosService } from "../../services/articulos.service";
 import { categoriasService } from "../../services/categorias.service";
 
 
