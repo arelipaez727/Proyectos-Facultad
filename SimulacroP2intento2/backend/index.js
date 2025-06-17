@@ -27,7 +27,8 @@ const usuariosRouter = require("./routes/usuarios");
 app.use(usuariosRouter);
 const contactosRouter = require("./routes/contactos");
 app.use(contactosRouter);
-
+const contratosRouter = require("./routes/contratos");
+app.use('/api/contratos',contratosRouter);
 
 const frontendIncluidoEnPublic = false;
 if (frontendIncluidoEnPublic) {
