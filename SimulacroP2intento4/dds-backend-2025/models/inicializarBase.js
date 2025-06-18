@@ -3,6 +3,7 @@ const categorias = require('./categoriasModel');
 const articulos = require('./articulosModel');
 const usuarios = require('./usuariosModel');
 const contactos = require('./contactosModel');
+const contratos = require('./contratosModel'); // AGREGADO POR MI
 
 if (require.main === module) {
   inicializarBase();    // si se ejecuta este archivo directamente, inicializa la base de datos, si no se lo ejecutara antes de levantar el servidor
@@ -29,6 +30,7 @@ if (require.main === module) {
     await DatosArticulos();
     await DatosUsuarios();  
     await DatosContactos();
+    await DatosContratos();
 
     console.log('Base de datos inicializada y datos de prueba creados.');
 
@@ -36,6 +38,14 @@ if (require.main === module) {
     console.error('Error al inicializar la base de datos:', error);
   }
 }
+
+//AGREGADO POR MI
+async function DatosContratos() {
+  const datosContratos = require('../datos_contratos.json'); // Ruta al archivo JSON
+  await contratos.bulkCreate(datosContratos);
+}
+//HASTA ACA
+
 
 
 async function DatosArticulos() {

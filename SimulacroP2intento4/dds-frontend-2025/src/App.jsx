@@ -10,6 +10,7 @@ import { ModalDialog } from "./components/ModalDialog";
 import { Usuarios } from "./components/Usuarios";
 import { RequireAuth } from "./components/RequiereAuth";
 import { Login } from "./components/login/Login";
+import { Contrato } from "./components/contratos/Contrato";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
             <Route path="/inicio" element={<Inicio />} />
             <Route path="/categorias" element={<Categorias />} />
             <Route path="/articulos" element={<Articulos />} />
+            <Route path="/contratos" element={<Contrato />} />
             <Route
               path="/usuarios"
               element={
