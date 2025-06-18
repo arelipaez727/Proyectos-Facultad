@@ -62,24 +62,34 @@ function Articulos() {
   }
 
 
+
+
+  //setAccionABMC("M"): Muestra el formulario en modo edicion
+  //setAccionABMC("C"): Muestra el formulario en modo consulta
   async function BuscarPorId(item, accionABMC) {
     const data = await articulosService.BuscarPorId(item);
-    setItem(data);
-    setAccionABMC(accionABMC);
+    setItem(data);   //rellena la plantilla con los datos del item seleccionado
+    setAccionABMC(accionABMC); 
   }
   
 
+
+
+
   function Consultar(item) {
-    BuscarPorId(item, "C"); // paso la accionABMC pq es asincrono la busqueda y luego de ejecutarse quiero cambiar el estado accionABMC
+    BuscarPorId(item, "C"); //Click en Consultar un item, toma el item y se lo pasa a BuscarPorId junto con la accion que se quiere hacer con el item
   }
   function Modificar(item) {
     if (!item.Activo) {
       modalDialogService.Alert("No puede modificarse un registro Inactivo.");
       return;
     }
-    BuscarPorId(item, "M"); // paso la accionABMC pq es asincrono la busqueda y luego de ejecutarse quiero cambiar el estado accionABMC
+    BuscarPorId(item, "M"); // Click en Modificar un item, toma el item y se lo pasa a BuscarPorId junto con la accion que se quiere hacer con el item
   }
 
+
+
+  //Esto se ejecuta al crear la plantilla para agregar un nuevo item, esta plantilla se crea cuando en el componente buscador se clickea en el boton Agregar
   async function Agregar() {
     setAccionABMC("A");
     setItem({

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { contratosService } from "../../services/contratos.service"; // ajustá la ruta según tu estructura
 
-import ContratosListado from "./ContratoListados";
+import ContratoListados from "./ContratoListados";
 import ContratoRegistro from "./ContratoRegistro";
 
 
@@ -106,7 +106,7 @@ export default function Contrato() {
           />
       }
       {AccionABMC === "L" && Listado?.length > 0 && 
-          <ContratosListado items={Listado} Consultar={() => {}} Modificar={() => {}} />
+          <ContratoListados items={Listado} Consultar={() => {}} Modificar={() => {}} />
       }
 
       {AccionABMC === "L" && BusquedaRealizada && Listado?.length === 0 && 

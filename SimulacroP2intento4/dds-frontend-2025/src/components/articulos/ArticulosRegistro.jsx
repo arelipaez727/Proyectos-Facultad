@@ -11,8 +11,10 @@ export default function ArticulosRegistro({
     register,
     handleSubmit,
     formState: { errors, touchedFields, isValid, isSubmitted },
-  } = useForm({ values: Item });
+  } = useForm({ values: Item }); //Item estara vacio si AccionABMC es A, y lleno si es M
+  //el formulario se inicializa con los valores que trae Item
 
+  
   const onSubmit = (data) => {
     Grabar(data);
   };
