@@ -17,7 +17,7 @@ function Contactos() {
   };
   const [AccionABMC, setAccionABMC] = useState("L");
   const [Nombre, setNombre] = useState("");
-  const [Activo, setActivo] = useState(true);
+  const [Activo, setActivo] = useState("");
   const [Items, setItems] = useState([]);
   const [Item, setItem] = useState(null);
   const [BusquedaRealizada, setBusquedaRealizada] = useState(false);
@@ -35,7 +35,7 @@ function Contactos() {
 
 
   async function Buscar() {
-    const data = await contactosService.Buscar(Nombre, true);
+    const data = await contactosService.Buscar(Nombre, Activo);
     setItems(data.Items);
     setBusquedaRealizada(true);
   }
@@ -54,73 +54,50 @@ function Contactos() {
     BuscarPorId(item, "C");
   }
 
-  function Modificar(item) {
-    if (!item.Activo) {
-      modalDialogService.Alert("No puede modificarse un registro Inactivo.");
-      return;
+  async function Modificar(item) {
+    try {
+      const data = await contactosService.BuscarPorId(item);
+      setItem(data);
+      setAccionABMC("M");
+    } catch (error) {
+      alert("Error al modificar: " + error);
     }
-    BuscarPorId(item, "M");
   }
+
 
   async function Agregar() {
     setAccionABMC("A");
     setItem({
       IdContacto: 0,
       Nombre: "",
-      Apellido: "",
+      FechaNacimiento: "",
       Telefono: "",
-      Email: "",
-      FechaNacimiento: moment(new Date()).format("DD/MM/YYYY"),
-      Direccion: "",
-      Salario: "0.00",
-      Activo: true,
+      IdCategoria: "",
+      ImporteContribucion: "0.00",
     });
   }
 
   async function ActivarDesactivar(item) {
-    modalDialogService.Confirm(
-      "¿Está seguro que quiere " +
-        (item.Activo ? "desactivar" : "activar") +
-        " el registro?",
-      undefined,
-      undefined,
-      undefined,
-      async () => {
-        await contactosService.ActivarDesactivar(item);
-        await Buscar();
-      }
-    );
-  }
-
-  async function Grabar(item) {
+    if (!window.confirm("¿Está seguro que desea eliminar este contacto?")) return;
     try {
-      // Formatear salario a 2 decimales
-      if (item.Salario) {
-        item.Salario = parseFloat(item.Salario).toFixed(2);
-      }
-      
-      // Convertir fecha al formato esperado por el backend (YYYY-MM-DD)
-      if (item.FechaNacimiento) {
-        item.FechaNacimiento = moment(item.FechaNacimiento, "DD/MM/YYYY").format("YYYY-MM-DD");
-      }
-      
-      await contactosService.Grabar(item);
+      await contactosService.ActivarDesactivar(item);
+      Buscar();
     } catch (error) {
-      modalDialogService.Alert(error?.response?.data?.message ?? error.toString());
-      return;
+      alert("Error al eliminar: " + error);
     }
-    
-    await Buscar();
-    Volver();
-
-    setTimeout(() => {
-      modalDialogService.Alert(
-        "Registro " +
-          (AccionABMC === "A" ? "agregado" : "modificado") +
-          " correctamente."
-      );
-    }, 0);
   }
+
+
+ async function Grabar(item) {
+    try {
+      await contactosService.Grabar(item);
+      Volver();
+      Buscar();
+    } catch (error) {
+      alert("Error al grabar: " + error);
+    }
+  }
+
 
   function Volver() {
     setAccionABMC("L");
