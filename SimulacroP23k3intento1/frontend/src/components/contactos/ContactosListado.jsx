@@ -27,7 +27,7 @@ export default function ContactosListado({
               <tr key={Item.IdContacto}>
                 <td>{Item.Nombre}</td>
                 <td className="text-center">
-                  {Item.FechaNacimiento ? moment(Item.FechaNacimiento).format("YYYY-MM-DD") : ""}
+                  {Item.FechaNacimiento ? moment(Item.FechaNacimiento).format("DD/MM/YYYY") : ""}
                 </td>
                 <td>{Item.Telefono}</td>
                 <td className="text-center">{Item.IdCategoria}</td>

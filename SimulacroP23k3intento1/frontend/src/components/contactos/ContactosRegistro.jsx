@@ -16,7 +16,7 @@ export default function ContactosRegistro({
     defaultValues: {
       ...Item,
       FechaNacimiento: Item?.FechaNacimiento 
-        ? moment(Item.FechaNacimiento, "YYYY/MM/DD").format("YYYY/MM/DD")
+        ? moment(Item.FechaNacimiento).format("DD/MM/YYYY")
         : ""
     }
   });
