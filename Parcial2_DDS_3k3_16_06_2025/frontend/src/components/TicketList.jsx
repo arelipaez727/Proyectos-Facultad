@@ -1,4 +1,5 @@
 import React from 'react';
+import moment from 'moment';
 
 function TicketList({ tickets, isLoading, error }) {
 
@@ -19,10 +20,8 @@ function TicketList({ tickets, isLoading, error }) {
         <table className="table table-striped table-hover">
             <thead className="table-dark">
                 <tr>
-                    <th>ID</th>
-                    <th>Título</th>
-                    <th>Descripción</th>
-                    <th>Estado</th>
+                    <th>Nombre Tarea</th>
+                    <th>Fecha</th>
                     <th>Prioridad</th>
                 </tr>
             </thead>
@@ -30,7 +29,7 @@ function TicketList({ tickets, isLoading, error }) {
                 {tickets.map((ticket) => (
                     <tr key={ticket.idTicket}>
                         <td>{ticket.nombreTarea}</td>
-                        <td>{ticket.fecha}</td>
+                        <td>{moment(ticket.fecha).format("DD/MM/YYYY")}</td>
                         <td>{ticket.prioridad}</td>
                     </tr>
                 ))}
