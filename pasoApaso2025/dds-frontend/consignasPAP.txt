@@ -1,0 +1,140 @@
+/* Solucion a las consignas del PAP 2025
+
+1) Qué pasa si el usuario se autentica, está trabajando con la aplicación y le expira el token? Aquí tendríamos que detectar la respuesta de 401 y solicitar 
+un nuevo token usando el refresh token.
+¿Cómo asegurar que se use una clave segura, con una cantidad mínima de caracteres que incluya mayúsculas, minúsculas y signos especiales?
+¿Cómo evitar que mediante un ataque de fuerza bruta descubran las claves de los usuarios?
+
+2) ¿Que pasa cuando un usuario logueado accede a una ruta protegida (actualmente validada con RequiereAuth), 
+pero no cumple con la autorización?: se muestra la interface gráfica pero no se llama a la webapi. 
+Pero aunque no permita llamar a la webapi del servidor, ni siquiera debería poder ver la interface gráfica de la página. ¿Cómo logramos esto?
+
+RESPUESTAS
+1)
+Si el access_token expira mientras el usuario trabaja, las solicitudes posteriores fallarán con error 401.
+El flujo de trabajo se vería algo asi: Primero la solicitud falla con 401 entonces el Interceptor captura el error.
+
+Intenta renovar el token con el refresh_token.
+
+Si hay éxito: Reintenta la solicitud con el nuevo token.
+
+Si falla: Redirige al login.
+
+El código puede ser algo asi: 
+http.interceptors.response.use(
+  (response) => response,
+  async (error) => {
+    if (error.response?.status === 401 && !error.config._retry) {
+      error.config._retry = true;
+      try {
+        const newToken = await AuthService.refreshToken(); // Usa el refresh_token
+        sessionStorage.setItem("accessToken", newToken);
+        error.config.headers.Authorization = `Bearer ${newToken}`;
+        return http(error.config); // Reintenta la solicitud
+      } catch (refreshError) {
+        AuthService.logout();
+        window.location.href = "/login";
+      }
+    }
+    return Promise.reject(error);
+  }
+);
+
+Para asegurar el uso de claves seguras de debe validar complejidad en el frontend y backend:
+En el front: 
+// En el componente de registro/cambio de clave
+const validatePassword = (password) => {
+  const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+  return regex.test(password);
+};
+
+// Uso
+if (!validatePassword(clave)) {
+  alert("La clave debe tener 8+ caracteres, mayúsculas, minúsculas, números y símbolos (@$!%*?&)");
+}
+En el back: 
+app.post('/api/register', (req, res) => {
+  const { password } = req.body;
+  const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+  
+  if (!passwordRegex.test(password)) {
+    return res.status(400).json({ error: "Clave no cumple requisitos" });
+  }
+  // Guardar usuario...
+});
+
+donde los requisitos minimos son: 8+ caracteres, 1 mayúscula, 1 minúscula, 1 número, 1 símbolo (@$!%*?&)
+
+Para evitar ataques por fuerza bruta existen varias soluciones: Límite de intentos (backend), retraso creciente (backend), CAPTCHA (backend y frontend), HASH seguro de claves (backend)
+ejemplo que podria funcionar aplicando Límite de intentos:
+// Ejemplo en Node.js con Express
+const rateLimit = require('express-rate-limit');
+
+const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutos
+  max: 5, // Máximo 5 intentos por IP
+  message: "Demasiados intentos. Intenta más tarde."
+});
+
+app.post('/api/login', limiter, (req, res) => {
+  // Lógica de login...
+});
+
+2) 
+
+Para resolver esto, RequireAuth no solo debe verificar autenticación sino que también debe verificar autorizacion.
+Para eso modificamos RequireAuth.jsx
+
+import React from "react";
+import { Navigate } from "react-router-dom";
+import AuthService from "../services/auth.service";
+
+function RequireAuth({ children, roles }) {
+  const usuarioLogueado = AuthService.getUsuarioLogueado();
+  const userRoles = ["user"]; // Ejemplo: Obtener roles del token (debes implementarlo)
+
+  // Verificar autenticación
+  if (!usuarioLogueado) {
+    return <Navigate to={`/login/${children.type.NombreComponenteNoOfuscado}`} />;
+  }
+
+  // Verificar autorización (si se especifican roles)
+  if (roles && !roles.some(role => userRoles.includes(role))) {
+    return <Navigate to="/acceso-denegado" />; // O redirigir a una página de "403 Forbidden"
+  }
+
+  return children;
+}
+
+export { RequireAuth };
+
+Luego agregamos una función en auth.service.js para extraer los roles del token:
+const getUserRoles = () => {
+  const token = sessionStorage.getItem("accessToken");
+  if (!token) return [];
+
+  try {
+    const payload = JSON.parse(atob(token.split('.')[1])); // Decodificar el payload JWT
+    return payload.roles || []; // Asegúrate de que el backend incluya "roles" en el token
+  } catch (error) {
+    return [];
+  }
+};
+
+// Añádela al objeto exportado:
+const AuthService = {
+  // ... otras funciones ...
+  getUserRoles,
+};
+
+Y en App.jsx hay que especificar los roles requeridos para cada ruta:
+<Route
+  path="/usuarios"
+  element={
+    <RequireAuth roles={["admin", "jefe"]}>
+      <Usuarios />
+    </RequireAuth>
+  }
+/>
+
+*/
