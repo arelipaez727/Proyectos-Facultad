@@ -1,0 +1,143 @@
+
+[
+  {
+    "Titulo": "El grito",
+    "Artista": "Edvard Munch",
+    "FechaIngreso": "2022-09-01",
+    "ValorEstimadoPesos": 3500000.00,
+    "EnExhibicion": true
+  },
+  {
+    "Titulo": "La noche estrellada",
+    "Artista": "Vincent van Gogh",
+    "FechaIngreso": "2023-01-15",
+    "ValorEstimadoPesos": 4200000.00,
+    "EnExhibicion": true
+  },
+  {
+    "Titulo": "Guernica",
+    "Artista": "Pablo Picasso",
+    "FechaIngreso": "2022-12-01",
+    "ValorEstimadoPesos": 8000000.00,
+    "EnExhibicion": false
+  },
+  {
+    "Titulo": "Las meninas",
+    "Artista": "Diego Velázquez",
+    "FechaIngreso": "2023-03-12",
+    "ValorEstimadoPesos": 7500000.00,
+    "EnExhibicion": true
+  },
+  {
+    "Titulo": "La persistencia de la memoria",
+    "Artista": "Salvador Dalí",
+    "FechaIngreso": "2023-05-07",
+    "ValorEstimadoPesos": 6000000.00,
+    "EnExhibicion": false
+  },
+  {
+    "Titulo": "La joven de la perla",
+    "Artista": "Johannes Vermeer",
+    "FechaIngreso": "2022-11-18",
+    "ValorEstimadoPesos": 3900000.00,
+    "EnExhibicion": true
+  },
+  {
+    "Titulo": "El beso",
+    "Artista": "Gustav Klimt",
+    "FechaIngreso": "2023-04-04",
+    "ValorEstimadoPesos": 4700000.00,
+    "EnExhibicion": true
+  },
+  {
+    "Titulo": "La creación de Adán",
+    "Artista": "Miguel Ángel",
+    "FechaIngreso": "2023-02-22",
+    "ValorEstimadoPesos": 9200000.00,
+    "EnExhibicion": false
+  },
+  {
+    "Titulo": "La libertad guiando al pueblo",
+    "Artista": "Eugène Delacroix",
+    "FechaIngreso": "2022-10-10",
+    "ValorEstimadoPesos": 6800000.00,
+    "EnExhibicion": true
+  },
+  {
+    "Titulo": "Saturno devorando a su hijo",
+    "Artista": "Francisco de Goya",
+    "FechaIngreso": "2023-06-11",
+    "ValorEstimadoPesos": 5300000.00,
+    "EnExhibicion": true
+  },
+  {
+    "Titulo": "La ronda de noche",
+    "Artista": "Rembrandt",
+    "FechaIngreso": "2023-01-28",
+    "ValorEstimadoPesos": 7200000.00,
+    "EnExhibicion": true
+  },
+  {
+    "Titulo": "Impresión, sol naciente",
+    "Artista": "Claude Monet",
+    "FechaIngreso": "2022-08-05",
+    "ValorEstimadoPesos": 3600000.00,
+    "EnExhibicion": false
+  },
+  {
+    "Titulo": "El jardín de las delicias",
+    "Artista": "El Bosco",
+    "FechaIngreso": "2022-07-20",
+    "ValorEstimadoPesos": 8400000.00,
+    "EnExhibicion": false
+  },
+  {
+    "Titulo": "Autorretrato",
+    "Artista": "Frida Kahlo",
+    "FechaIngreso": "2023-04-20",
+    "ValorEstimadoPesos": 4100000.00,
+    "EnExhibicion": true
+  },
+  {
+    "Titulo": "Campbell's Soup Cans",
+    "Artista": "Andy Warhol",
+    "FechaIngreso": "2023-03-25",
+    "ValorEstimadoPesos": 3900000.00,
+    "EnExhibicion": false
+  },
+  {
+    "Titulo": "American Gothic",
+    "Artista": "Grant Wood",
+    "FechaIngreso": "2022-10-30",
+    "ValorEstimadoPesos": 3100000.00,
+    "EnExhibicion": true
+  },
+  {
+    "Titulo": "La danza",
+    "Artista": "Henri Matisse",
+    "FechaIngreso": "2023-05-18",
+    "ValorEstimadoPesos": 4500000.00,
+    "EnExhibicion": true
+  },
+  {
+    "Titulo": "El almuerzo sobre la hierba",
+    "Artista": "Édouard Manet",
+    "FechaIngreso": "2022-09-14",
+    "ValorEstimadoPesos": 4700000.00,
+    "EnExhibicion": false
+  },
+  {
+    "Titulo": "La escuela de Atenas",
+    "Artista": "Rafael",
+    "FechaIngreso": "2023-06-01",
+    "ValorEstimadoPesos": 8900000.00,
+    "EnExhibicion": true
+  },
+  {
+    "Titulo": "El nacimiento de Venus",
+    "Artista": "Sandro Botticelli",
+    "FechaIngreso": "2022-12-22",
+    "ValorEstimadoPesos": 7700000.00,
+    "EnExhibicion": false
+  }
+]
